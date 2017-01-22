@@ -6,8 +6,8 @@ public class Spawn : MonoBehaviour {
 	public GameObject orbPrefab;
 	public GameObject ringPrefab;
 	public Transform spawnTransform;
-	public float spawnRadius = 5;
-	public float orbSpeed = 0.5f;
+	public float spawnRadius;
+	public float orbSpeed;
 	public float spawnDegrees = 0;
 	// Use this for initialization
 	void Start () {
@@ -44,14 +44,14 @@ public class Spawn : MonoBehaviour {
 		}
 	}
 
-	void SpawnOrb(Color desiredColor){
+	public void SpawnOrb(Color desiredColor){
 		GameObject orbClone = (GameObject)Instantiate(orbPrefab, spawnTransform.position, spawnTransform.rotation);
 		Vector2 movement = new Vector2 (0.0f, 0.0f) - new Vector2(spawnTransform.position.x, spawnTransform.position.y);
 		orbClone.GetComponent<Rigidbody2D>().velocity = movement * orbSpeed;
 		orbClone.GetComponent<Orb>().ChangeColor (desiredColor);
 	}
 
-	void SpawnRing(){
+	public void SpawnRing(){
 		GameObject ringClone = (GameObject)Instantiate(ringPrefab, Vector3.zero, Quaternion.identity);
 	}
 		
@@ -59,7 +59,7 @@ public class Spawn : MonoBehaviour {
 		spawnTransform.position = newPos;
 	}
 
-	void ChooseSpawn(float ang){
+	public void ChooseSpawn(float ang){
 		Vector3 pos;
 		pos.x = spawnRadius * Mathf.Sin(ang * Mathf.Deg2Rad);
 		pos.y = spawnRadius * Mathf.Cos(ang * Mathf.Deg2Rad);

@@ -32,13 +32,15 @@ public class PlayerController : MonoBehaviour {
 			if (playerRelative.x > 0 || playerRelative.x == 0 && playerRelative.y > 0) {
 				if (other.GetComponent<Orb> ().CheckColor() == Color.black) {
 					print ("Black: Correct!");
-					GetComponent<SpriteRenderer> ().color = Color.green;
+					//GetComponent<SpriteRenderer> ().color = Color.green;
 
 					gameManager.UpdateScore (scoreAmount);
 					gameManager.UpdateCombo (true);
 				} else {
 					//print ("Black: Incorrect!");
-					GetComponent<SpriteRenderer> ().color = Color.red;
+					//GetComponent<SpriteRenderer> ().color = Color.red;
+
+					gameManager.UpdateScore (-scoreAmount);
 					gameManager.UpdateCombo (false);
 				}
 
@@ -48,12 +50,13 @@ public class PlayerController : MonoBehaviour {
 			else if (playerRelative.x < 0 || playerRelative.x == 0 && playerRelative.y < 0) {
 				if (other.GetComponent<Orb> ().CheckColor() == Color.white) {
 					print ("White: Correct!");
-					GetComponent<SpriteRenderer> ().color = Color.green;
+					//GetComponent<SpriteRenderer> ().color = Color.green;
 					gameManager.UpdateScore (scoreAmount);
 					gameManager.UpdateCombo (true);
 				} else {
 					print ("White: Incorrect!");
-					GetComponent<SpriteRenderer> ().color = Color.red;
+					//GetComponent<SpriteRenderer> ().color = Color.red;
+					gameManager.UpdateScore (-scoreAmount);
 					gameManager.UpdateCombo (false);
 				}
 			}
