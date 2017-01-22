@@ -13,6 +13,7 @@ public class AudioManager : MonoBehaviour {
 	public Text songTimeText;
 	public bool songStart = false;
 	public int noteCount = 0;
+	public bool startGame = false;
 
 	public AudioSource audioSource;
 
@@ -26,10 +27,12 @@ public class AudioManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		//StartCoroutine(BeatLoader());
-		if (songStart) {
-			songTime += Time.deltaTime;
-			songTimeText.text = "Current Time: " + songTime;
+		if (startGame == true) {
+			//StartCoroutine(BeatLoader());
+			if (songStart) {
+				songTime += Time.deltaTime;
+				songTimeText.text = "Current Time: " + songTime;
+			}
 		}
 	}
 
@@ -96,5 +99,10 @@ public class AudioManager : MonoBehaviour {
 
 	void StartSong (){
 		audioSource.Play();
+	}
+
+	public void StartGame(){
+		startGame = true;
+		InvokeRepeating("RandomBeatLoader", 2.0f, 1.0f);
 	}
 }

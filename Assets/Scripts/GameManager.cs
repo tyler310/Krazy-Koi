@@ -2,12 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
 	public Text ScoreText;
 	public Text ComboText;
 	public GameObject audioController;
+
+	public Text rightInstructions;
+	public Text leftInstructions;
+	public Text clickToStart;
+	public Image rightOverlay;
+	public Image leftOverlay;
 
 	public int Score = 0;
 	public int Combo = 0;
@@ -22,6 +29,9 @@ public class GameManager : MonoBehaviour {
 		if (Input.GetMouseButtonDown(0)) {
 			StartGame ();
 		}
+		if (Input.GetKeyDown("n")) {
+			EndGame ();
+		}
 	}
 
 	public void UpdateScore(int points){
@@ -31,7 +41,17 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void StartGame(){
-		
+		audioController.GetComponent<AudioManager> ().StartGame();
+		FadeUI ();
+	}
+
+	void EndGame(){
+		ScoreHistory.CurrentScore = Score;
+		if (Score > ScoreHistory.HighScore) {
+			ScoreHistory.HighScore = Score;
+		}
+		print (ScoreHistory.CurrentScore);
+		SceneManager.LoadScene ("summary_screen");
 	}
 
 	public void UpdateCombo(bool hit){
@@ -45,4 +65,11 @@ public class GameManager : MonoBehaviour {
 		ComboText.text = Combo.ToString();
 	}
 
+	void FadeUI(){
+		rightInstructions.CrossFadeAlpha(0f,1f,false);
+		leftInstructions.CrossFadeAlpha(0f,1f,false);
+		rightOverlay.CrossFadeAlpha(0f,1f,false);
+		leftOverlay.CrossFadeAlpha(0f,1f,false);
+		clickToStart.CrossFadeAlpha(0f,1f,false);
+	}
 }
