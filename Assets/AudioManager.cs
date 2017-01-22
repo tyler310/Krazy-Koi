@@ -21,7 +21,7 @@ public class AudioManager : MonoBehaviour {
 	void Start () {
 		LoadSong ();
 		audioSource = GetComponent<AudioSource>();
-		InvokeRepeating("RandomBeatLoader", 2.0f, 1.0f);
+		//InvokeRepeating("RandomBeatLoader", 2.0f, 1.0f);
 	}
 
 	// Update is called once per frame

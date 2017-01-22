@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: b7ba76090672442939c2ef3c78847b1a
+timeCreated: 1485075718
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: AnnBrush
+  fontNames:
+  - AnnBrush
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: af89a132030e241d598212405ac9a086, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

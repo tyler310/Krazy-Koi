@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
 
 	public Text ScoreText;
 	public Text ComboText;
+	public GameObject audioController;
 
 	public int Score = 0;
 	public int Combo = 0;
@@ -18,13 +19,19 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (Input.GetMouseButtonDown(0)) {
+			StartGame ();
+		}
 	}
 
 	public void UpdateScore(int points){
 		Score += points;
 		//print ("Score: " + Score);
-		ScoreText.text = "Score: " + Score;
+		ScoreText.text = Score.ToString();
+	}
+
+	void StartGame(){
+		
 	}
 
 	public void UpdateCombo(bool hit){
@@ -35,7 +42,7 @@ public class GameManager : MonoBehaviour {
 			Combo = 0;
 		}
 		//print ("CCCCCOMBO: " + Combo);
-		ComboText.text = "CCCCCOMBO: " + Combo;
+		ComboText.text = Combo.ToString();
 	}
 
 }
