@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour {
 
 	public int Score = 0;
 	public int Combo = 0;
+	public bool gameStarted = false;
 
 	// Use this for initialization
 	void Start () {
@@ -26,8 +27,25 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetMouseButtonDown(0)) {
-			StartGame ();
+		if (gameStarted == false) {
+			#if UNITY_STANDALONE || UNITY_WEBPLAYER
+			if (Input.GetMouseButtonDown(0)) {
+				gameStarted = true;
+				StartGame ();
+			}
+
+			#elif UNITY_IOS || UNITY_ANDROID || UNITY_WP8 || UNITY_IPHONE
+			for (int i = 0; i < Input.touchCount; ++i) {
+				if (Input.GetTouch (i).phase == TouchPhase.Began) {
+					gameStarted = true;
+					StartGame ();
+				}
+			}
+			#endif
+			if (Input.GetKeyDown("t")) {
+				gameStarted = true;
+				StartGame ();
+			}
 		}
 		if (Input.GetKeyDown("n")) {
 			EndGame ();
@@ -45,7 +63,7 @@ public class GameManager : MonoBehaviour {
 		FadeUI ();
 	}
 
-	void EndGame(){
+	public void EndGame(){
 		ScoreHistory.CurrentScore = Score;
 		if (Score > ScoreHistory.HighScore) {
 			ScoreHistory.HighScore = Score;

@@ -10,6 +10,9 @@ public class Spawn : MonoBehaviour {
 	public float orbSpeed;
 	public float spawnDegrees = 0;
 	// Use this for initialization
+	public float diffTimer = 0;
+	public bool startedTimer = false;
+
 	void Start () {
 	}
 
@@ -17,6 +20,9 @@ public class Spawn : MonoBehaviour {
 	}
 
 	void Update(){
+		if (startedTimer == true) {
+			diffTimer += Time.deltaTime;
+		}
 		if (Input.GetKeyDown ("q")) {
 			//Black
 			SpawnOrb (Color.black);
@@ -49,6 +55,7 @@ public class Spawn : MonoBehaviour {
 		Vector2 movement = new Vector2 (0.0f, 0.0f) - new Vector2(spawnTransform.position.x, spawnTransform.position.y);
 		orbClone.GetComponent<Rigidbody2D>().velocity = movement * orbSpeed;
 		orbClone.GetComponent<Orb>().ChangeColor (desiredColor);
+		StartTimer ();
 	}
 
 	public void SpawnRing(){
@@ -65,5 +72,13 @@ public class Spawn : MonoBehaviour {
 		pos.y = spawnRadius * Mathf.Cos(ang * Mathf.Deg2Rad);
 		pos.z = 0;
 		MoveSpawn (pos);
+	}
+
+	public void StartTimer(){
+		startedTimer = true;
+	}
+	public void EndTimer(){
+		startedTimer = false;
+		print (diffTimer);
 	}
 }

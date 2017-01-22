@@ -53,10 +53,14 @@ public class StartManager : MonoBehaviour {
 	}
 
 	void FadeUI(){
-		background.CrossFadeAlpha(0f,1f,false);
-		backgroundCircle.CrossFadeAlpha(0f,1f,false);
-		startButtonUI.CrossFadeAlpha(0f,1f,false);
-		title.CrossFadeAlpha(0f,1f,false);
+		background.CrossFadeAlpha(0.01f,1f,false);
+		backgroundCircle.CrossFadeAlpha(0.01f,1f,false);
+		startButtonUI.CrossFadeAlpha(0.01f,1f,false);
+
+		Color c = startButtonUI.color;
+		c.a = 0f;
+		startButtonUI.color = c;
+		title.CrossFadeAlpha(0.01f,1f,false);
 	}
 
 }
