@@ -40,7 +40,7 @@ public class StartManager : MonoBehaviour {
 		koiFish.Rotate(Vector3.forward * koiSpeed);
 		if (transition) {
 			koiSpeed += 0.2f;
-			if (koiFish.localScale.x >= 0.3f && koiFish.localScale.y >= 0.3f) {
+			if (koiFish.localScale.x >= 0.2f && koiFish.localScale.y >= 0.2f) {
 				koiFish.localScale -= new Vector3(scaleSpeed, scaleSpeed, 0);
 			}
 		}
